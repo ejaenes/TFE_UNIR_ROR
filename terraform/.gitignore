@@ -1,0 +1,18 @@
+# Directorios .terraform locales
+**/.terraform/*
+.terraform.lock.hcl
+
+# Archivos .tfstate
+*.tfstate
+*.tfstate.*
+
+# Excluir todos los archivos .tfvars, que probablemente contengan datos sensibles, como
+# contraseñas, claves privadas y otros secretos. Estos no deben formar parte del control de versiones
+# ya que son puntos de datos potencialmente sensibles y sujetos a cambios según el entorno.
+#
+*.tfvars
+!sample.tfvars
+
+# Excluir clave públicas generada
+#
+*.pub
