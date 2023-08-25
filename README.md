@@ -39,17 +39,19 @@ environment         = "prod"
 availability_zones  = ["eu-west-1a", "eu-west-1b"]
 ```
 
-Después de esta configuración, ejecuta el siguiente comando en la carpeta raíz del proyecto:
+Después de esta configuración, ejecuta el siguiente comando en la carpeta `terraform/` del proyecto:
 `$ terraform init`
 
-Después de instalar correctamente los complementos de Terraform, ejecuta el comando de planificación. Al ejecutar el comando de planificación, pasa el argumento `--var-file` con el valor del archivo `.tfvars` que deseas ejecutar. Por ejemplo, para implementar la aplicación en el entorno de `staging`, ejecuta el siguiente comando:
+Después de instalar correctamente los complementos de Terraform, ejecuta el comando de planificación. Al ejecutar el comando de planificación, pasa el argumento `--var-file` con el valor del archivo `.tfvars` que deseas ejecutar. Por ejemplo, para implementar la aplicación en el entorno de `production`, ejecuta el siguiente comando:
 
 `$ terraform plan --var-file=production.tfvars`
 
 Después de crear el plan correctamente, ejecuta el siguiente comando:
 
-`$ terraform apply --var-file=staging.tfvars`
+`$ terraform apply --var-file=production.tfvars`
 
 Esto comenzará a crear tu infraestructura de AWS para la aplicación y se completará proporcionando la URL del balanceador de carga de la aplicación utilizando el siguiente comando:
 
 `$ terraform output alb_dns_name`
+
+No obstante, la propia aplicación devolverá el comando corregido.

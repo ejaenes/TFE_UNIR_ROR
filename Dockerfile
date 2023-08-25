@@ -1,4 +1,4 @@
-FROM ruby:2.7.8-slim
+FROM --platform=linux/amd64 ruby:2.7.8-slim 
 
 RUN apt-get update && apt-get install -y --no-install-recommends \
     build-essential \

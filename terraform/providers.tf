@@ -7,13 +7,13 @@ provider "aws" {
 
 # Bloque de configuración de Terraform
 terraform {
-  # Bloque de proveedores requeridos
+  # Bloque de proveedores requeridos para mac M1, funcionan para Linux Debian igual
   required_providers {
     aws = { // Proveedor de AWS
-      version = "~> 2.13.0"
+      version = "~> 4.3.0"
     }
     random = { // Proveedor que permite la generación de valores aleatorios
-      version = ">= 2.1.2"
+      version = ">= 3.5.0"
     }
   }
   # Versión requerida de Terraform
