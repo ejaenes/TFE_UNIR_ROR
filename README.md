@@ -55,3 +55,7 @@ Esto comenzará a crear tu infraestructura de AWS para la aplicación y se compl
 `$ terraform output alb_dns_name`
 
 No obstante, la propia aplicación devolverá el comando corregido.
+
+## Consideraciones y licencia
+
+Este proyecto ha sido desarrollado como parte del Trabajo de Fin de Grado en Ingeniería Informática de UNIR.

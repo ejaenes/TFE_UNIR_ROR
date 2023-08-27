@@ -16,3 +16,6 @@
 # Excluir clave públicas generada
 #
 *.pub
+
+# Excluir Rails key
+./current/config/master.key
