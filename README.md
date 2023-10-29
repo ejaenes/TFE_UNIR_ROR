@@ -1,3 +1,77 @@
+# Implementation of Ruby on Rails using Terraform, Docker
+
+## Resources
+
+- Terraform [https://www.terraform.io](https://www.terraform.io)
+- Docker [https://www.docker.com/](https://www.docker.com/)
+
+## Create Docker image
+
+From the root directory, run 
+
+`docker build . -t <AWS_ACC_ID>.dkr.ecr.eu-west-1.amazonaws.com/ror_app:<tag>`
+
+Once the image is created and tagged, you'll need to log in using AWS credentials:
+
+`aws ecr get-login-password --region eu-west-1 | docker login --username AWS --password-stdin <AWS_ACC_ID>.dkr.ecr.eu-west-1.amazonaws.com`
+
+and upload it to the AWS repository:
+
+`docker push <AWS_ACC_ID>.dkr.ecr.eu-west-1.amazonaws.com/ror_app:<tag>`
+
+## Install Terraform
+
+Install Terraform using this link [https://learn.hashicorp.com/terraform/getting-started/install.html](https://learn.hashicorp.com/terraform/getting-started/install.html)
+
+## Deploying the application on AWS
+
+In the root folder of the Terraform project, create a `.tfvars` file for the staging, production, and/or test environments and specify the value for each variable required in the `vars.tf` file.
+
+For example, in `production.tfvars`:
+
+```
+region              = "eu-west-1"
+domain              = "ejsrorproject.com"
+access_key          = "xxx"
+secret_key_base     = "xxx"
+environment         = "prod"
+availability_zones  = ["eu-west-1a", "eu-west-1b"]
+```
+
+After this setup, run the following command in the `terraform/` folder of the project:
+`$ terraform init`
+
+After correctly installing the Terraform plugins, run the planning command. When executing the planning command, pass the `--var-file` argument with the value of the `.tfvars` file you want to execute. For instance, to deploy the application in the `production` environment, run the following command:
+
+`$ terraform plan --var-file=production.tfvars`
+
+After creating the plan correctly, run the following command:
+
+`$ terraform apply --var-file=production.tfvars`
+
+This will start creating your AWS infrastructure for the application and will finish by providing the Load Balancer's URL for the application. You can check it using the following command:
+
+`$ terraform output alb_dns_name`
+
+However, the application itself will show the command result when it finishes the deployment.
+
+## Considerations and License
+
+This project was developed as part of the Capstone Project in Bachelor's degree in Computer Engineering from UNIR: Deployment of IaC for Ruby on Rails in Cloud environments.
+
+This software is licensed under the GPLv3 license:
+
+  This program is free software: you can redistribute it and/or modify it under the terms of the GNU General Public License as published by the Free Software Foundation, either version 3 of the License, or (at your option) any later version.
+
+  This program is distributed in the hope that it will be useful, but WITHOUT ANY WARRANTY; without even the implied warranty of MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE. See the GNU General Public License for more details.
+
+  You should have received a copy of the GNU General Public License along with this program. If not, see <https://www.gnu.org/licenses/>. 
+
+
+
+***
+
+
 # Implementación de Ruby on Rails utilizando Terraform, Docker
 
 ## Recursos
